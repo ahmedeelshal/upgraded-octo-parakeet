@@ -1,0 +1,13 @@
+{
+  "name": "MAAK | معك",
+  "short_name": "MAAK",
+  "description": "Your life, connected.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0A2540",
+  "dir": "auto",
+  "icons": [
+    { "src": "/assets/maak-logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
