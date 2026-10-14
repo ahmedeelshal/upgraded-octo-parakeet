@@ -1,0 +1,28 @@
+services:
+  maak:
+    build: .
+    container_name: maak-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:4173:4173"
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4173
+      MAAK_DB_PATH: /var/lib/maak/maak.sqlite
+      MAAK_BACKUP_DIR: /var/lib/maak/backups
+      # Keep false unless a trusted reverse proxy terminates TLS and sets X-Forwarded-Proto.
+      MAAK_TRUST_PROXY: "false"
+    volumes:
+      - maak_data:/var/lib/maak
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,noexec,nosuid
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    init: true
+volumes:
+  maak_data:

@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: maak-life-platform
+    runtime: node
+    plan: starter
+    region: frankfurt
+    buildCommand: npm install --omit=dev
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    disk:
+      name: maak-persistent-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      - key: MAAK_TRUST_PROXY
+        value: "true"
+      - key: MAAK_DB_PATH
+        value: /var/data/maak.sqlite
+      - key: MAAK_BACKUP_DIR
+        value: /var/data/backups
+      - key: MAAK_BACKUP_KEEP
+        value: "14"
+      - key: MAAK_SESSION_DAYS
+        value: "14"
+      - key: AI_BASE_URL
+        value: https://api.openai.com/v1
+      - key: AI_MODEL
+        value: gpt-4o-mini
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT
+        sync: false

@@ -1,0 +1,20 @@
+{
+  "name": "maak-life-platform",
+  "version": "2.1.0",
+  "private": true,
+  "description": "MAAK — deploy-ready single-instance personal life platform with per-user accounts, SQLite persistence, AI gateway and optional Web Push",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check scripts/backup-db.js && node --check test/server.test.js",
+    "test": "node --test",
+    "backup": "node scripts/backup-db.js"
+  },
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "optionalDependencies": {
+    "web-push": "^3.6.7"
+  }
+}
